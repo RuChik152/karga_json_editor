@@ -8,33 +8,46 @@ import './App.css';
 class App extends Component {
   state = {
     json: {
-      // array: [1, 2, 3, 4, 5],
-      // 'boolean': true,
-      // 'null': null,
-      // 'number': 123,
-      // 'object': {'a': 'b', 'c': 'd'},
-      // 'string': 'Hello World'
-    }
+      array: [1, 2, 3, 4, 5],
+      boolean: true,
+      null: null,
+      number: 123,
+      object: {'a': 'b', 'c': 'd'},
+      string: 'Hello World',
+      objects: {
+        firstObject: {
+          number: 1,
+          string: 'Text',
+          boolean: false
+        },
+        secondObject: {
+          number: 1,
+          string: 'Text',
+          boolean: false
+        }
+      }
+    },
+    dbOrMock: false
   };
 
-  async getSettingsData() {
-    const request = await axios.get('http://localhost:5555/dev-client/63c7db2b426ebe25623e921a');
-    return request.data
-  }
-
-  async updateSettingsData() {
-    const request = await axios.put('http://localhost:5555/dev-client/63c7db2b426ebe25623e921a', this.state.json);
-    return request
-  }
-
-  componentDidMount () {
-      this.getSettingsData().then((data) => this.setState({json: data}))
-  }
+  // async getSettingsData() {
+  //   const request = await axios.get('http://localhost:5555/dev-client/63c7db2b426ebe25623e921a');
+  //   return request.data
+  // }
+  //
+  // async updateSettingsData() {
+  //   const request = await axios.put('http://localhost:5555/dev-client/63c7db2b426ebe25623e921a', this.state.json);
+  //   return request
+  // }
+  //
+  // componentDidMount () {
+  //     this.getSettingsData().then((data) => this.setState({json: data}))
+  // }
 
   render() {
     return (
       <div className="app">
-        <h1>JSONEditor React demo</h1>
+        <h1>JSONEditor KargaDB</h1>
         <div className="contents">
           <div className="menu">
             <button onClick={this.updateTime}>
@@ -68,7 +81,7 @@ class App extends Component {
       json: Object.assign({}, this.state.json, { time })
     })
 
-    this.updateSettingsData().then((data) => console.log('data', data))
+    // this.updateSettingsData().then((data) => console.log('data', data))
 
   };
 }
